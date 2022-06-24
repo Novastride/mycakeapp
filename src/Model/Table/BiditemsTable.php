@@ -10,7 +10,7 @@ use Cake\Validation\Validator;
  * Biditems Model
  *
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @property \App\Model\Table\BidinfoTable&\Cake\ORM\Association\HasMany $Bidinfo
+ * @property \App\Model\Table\BidinfoTable&\Cake\ORM\Association\HasOne $Bidinfo
  * @property \App\Model\Table\BidrequestsTable&\Cake\ORM\Association\HasMany $Bidrequests
  *
  * @method \App\Model\Entity\Biditem get($primaryKey, $options = [])
@@ -46,7 +46,7 @@ class BiditemsTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER',
         ]);
-        $this->hasMany('Bidinfo', [
+        $this->hasOne('Bidinfo', [
             'foreignKey' => 'biditem_id',
         ]);
         $this->hasMany('Bidrequests', [
