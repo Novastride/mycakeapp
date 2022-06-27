@@ -1,8 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
-
 /**
  * Biditems Controller
  *
@@ -10,7 +8,7 @@ use App\Controller\AppController;
  *
  * @method \App\Model\Entity\Biditem[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class BiditemsController extends AppController
+class BiditemsController extends AuctionBaseController
 {
     /**
      * Index method

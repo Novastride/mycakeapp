@@ -24,7 +24,7 @@ class BidmessagesTableTest extends TestCase
      */
     public $fixtures = [
         'app.Bidmessages',
-        'app.Bidinfos',
+        'app.Bidinfo',
         'app.Users',
     ];
 

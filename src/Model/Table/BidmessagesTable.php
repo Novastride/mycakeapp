@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Bidmessages Model
  *
- * @property \App\Model\Table\BidinfosTable&\Cake\ORM\Association\BelongsTo $Bidinfos
+ * @property \App\Model\Table\BidinfoTable&\Cake\ORM\Association\BelongsTo $Bidinfo
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  *
  * @method \App\Model\Entity\Bidmessage get($primaryKey, $options = [])

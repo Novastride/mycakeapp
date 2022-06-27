@@ -3,14 +3,7 @@ namespace App\Controller;
 
 use Cake\Event\Event;
 
-/**
- * Users Controller
- *
- * @property \App\Model\Table\UsersTable $Users
- *
- * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
-class UsersController extends AppController
+class AuctionBaseController extends AppController
 {
     public function initialize()
     {
@@ -37,36 +30,27 @@ class UsersController extends AppController
         ]);
     }
 
-    public function login()
-    {
-        if ($this->request->isPost()) {
-            $user = $this->Auth->identify();
-            if (!empty($user)) {
-                $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
-            }
-            $this->Flash->error('ユーザー名かパスワードが間違っています。');
-        }
-    }
-
-    public function logout()
-    {
-        $this->request->getSession()->destroy();
-        $this->Flash->success('ログアウトしました。');
-        return $this->redirect($this->Auth->logout());
-    }
-
     // 認証を使わないページの設定
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['login', 'logout']);
+        $this->Auth->allow([]);
     }
 
     // 認証時のロールのチェック
     public function isAuthorized($user = null)
     {
-        return $user['role'] === 'admin';
+        if ($user['role'] === 'admin') {
+            return true;
+        }
+        if ($user['role'] === 'user') {
+            if ($this->name == 'Auction') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
     }
 
     /**
@@ -77,6 +61,7 @@ class UsersController extends AppController
     public function index()
     {
         $users = $this->paginate($this->Users);
+
         $this->set(compact('users'));
     }
 
